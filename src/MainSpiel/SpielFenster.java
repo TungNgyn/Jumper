@@ -11,9 +11,9 @@ public class SpielFenster {
         spielFrame.setSize(610,490);
         spielFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         spielFrame.setLocationRelativeTo(null);
-        spielFrame.pack();
         spielFrame.setResizable(false);
         spielFrame.add(spielPanel);
+        spielFrame.pack();
         spielFrame.setVisible(true);
     }
 }

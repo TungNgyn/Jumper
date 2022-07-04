@@ -30,6 +30,5 @@ public class MausEingabe implements MouseListener, MouseMotionListener {
 
     }
     public void mouseMoved(MouseEvent e) {
-        spielPanel.setRectPos(e.getX(),e.getY());
     }
 }
