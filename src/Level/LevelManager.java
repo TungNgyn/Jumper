@@ -16,7 +16,6 @@ public class LevelManager {
         importLevelSprites();
         levelEins = new Level(LoadSave.GetLevelDaten());
     }
-
     public void importLevelSprites() {
         BufferedImage bild = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
         levelSprite = new BufferedImage[48];
@@ -39,5 +38,8 @@ public class LevelManager {
     }
     public void update() {
 
+    }
+    public Level getCurrentLevel() {
+        return levelEins;
     }
 }
