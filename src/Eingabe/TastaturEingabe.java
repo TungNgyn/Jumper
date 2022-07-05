@@ -14,36 +14,42 @@ public class TastaturEingabe implements KeyListener {
     public TastaturEingabe(SpielPanel spielPanel){
         this.spielPanel = spielPanel;
     }
-
     public void keyTyped(KeyEvent e) {
 
     }
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_W:
-                spielPanel.setRichtung(HOCH);
+                spielPanel.getSpiel().getSpieler().istOben();
+                spielPanel.getSpiel().getSpieler().setOben(true);
                 break;
             case KeyEvent.VK_A:
-                spielPanel.setRichtung(LINKS);
+                spielPanel.getSpiel().getSpieler().istLinks();
+                spielPanel.getSpiel().getSpieler().setLinks(true);
                 break;
             case KeyEvent.VK_D:
-                spielPanel.setRichtung(RECHTS);
+                spielPanel.getSpiel().getSpieler().istRechts();
+                spielPanel.getSpiel().getSpieler().setRechts(true);
                 break;
             case KeyEvent.VK_S:
-                spielPanel.setRichtung(UNTEN);
-                break;
-            case KeyEvent.VK_SPACE:
-                spielPanel.setAktion(ATTACK_1_R);
+                spielPanel.getSpiel().getSpieler().istUnten();
+                spielPanel.getSpiel().getSpieler().setUnten(true);
                 break;
         }
     }
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()){
             case KeyEvent.VK_W:
+                spielPanel.getSpiel().getSpieler().setOben(false);
+                break;
             case KeyEvent.VK_A:
+                spielPanel.getSpiel().getSpieler().setLinks(false);
+                break;
             case KeyEvent.VK_S:
+                spielPanel.getSpiel().getSpieler().setUnten(false);
+                break;
             case KeyEvent.VK_D:
-                spielPanel.setBewegung(false);
+                spielPanel.getSpiel().getSpieler().setRechts(false);
                 break;
         }
 

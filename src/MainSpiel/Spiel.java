@@ -1,7 +1,9 @@
 package MainSpiel;
 
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
+import Charaktere.Spieler;
+import Level.LevelManager;
+
+import java.awt.*;
 
 public class Spiel implements Runnable{
     private SpielFenster spielFenster;
@@ -10,20 +12,43 @@ public class Spiel implements Runnable{
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
 
+    private Spieler spieler;
+    private LevelManager levelManager;
+
+    public final static int TILES_DEFAULT_SIZE = 32;
+    public final static float SCALE = 2f;
+    public final static int TILES_WEITE = 26;
+    public final static int TILES_HOEHE = 14;
+    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    public final static int SPIEL_WEITE = TILES_SIZE * TILES_WEITE;
+    public final static int SPIEL_HOEHE = TILES_SIZE * TILES_HOEHE;
+
     public Spiel(){
-        spielPanel = new SpielPanel();
+        initKlassen();
+
+        spielPanel = new SpielPanel(this);
         spielFenster = new SpielFenster(spielPanel);
         spielPanel.setFocusable(true);
         spielPanel.requestFocus();
+
         startSpielSchleife();
     }
 
-    public void update() {
-        spielPanel.updateSpiel();
+    private void initKlassen() {
+        spieler = new Spieler(200,200,(int) (32 * SCALE), (int) (32 * SCALE));
+        levelManager = new LevelManager(this);
     }
     private void startSpielSchleife(){
         spielThread = new Thread(this);
         spielThread.start();
+    }
+    public void update() {
+        levelManager.update();
+        spieler.update();
+    }
+    public void render(Graphics g) {
+        levelManager.draw(g);
+        spieler.render(g);
     }
     public void run() {
         double timePerFrame = 1000000000.0 / FPS_SET;
@@ -63,5 +88,11 @@ public class Spiel implements Runnable{
                 updates = 0;
             }
         }
+    }
+    public void fensterFokusWeg() {
+        spieler.resetRichtungBooleans();
+    }
+    public Spieler getSpieler() {
+        return spieler;
     }
 }

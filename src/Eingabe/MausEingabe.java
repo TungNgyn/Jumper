@@ -13,7 +13,9 @@ public class MausEingabe implements MouseListener, MouseMotionListener {
         this.spielPanel = spielPanel;
     }
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            spielPanel.getSpiel().getSpieler().setAngreifen(true);
+        }
     }
     public void mousePressed(MouseEvent e) {
     }

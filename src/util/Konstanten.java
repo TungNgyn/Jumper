@@ -4,9 +4,9 @@ public class Konstanten {
 
     public static class Richtung{
         public static final int LINKS = 0;
-        public static final int HOCH = 2;
-        public static final int RECHTS = 3;
-        public static final int UNTEN = 4;
+        public static final int OBEN = 1;
+        public static final int RECHTS = 2;
+        public static final int UNTEN = 3;
     }
 
     public static class SpielerKonstanten{
